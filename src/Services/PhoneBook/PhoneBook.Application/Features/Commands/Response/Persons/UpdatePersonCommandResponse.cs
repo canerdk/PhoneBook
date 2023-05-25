@@ -1,6 +1,6 @@
 ﻿namespace PhoneBook.Application.Features.Commands.Response.Persons
 {
-    public class DeletePersonCommandResponse
+    public class UpdatePersonCommandResponse
     {
         public Guid Id { get; set; }
         public string FirsName { get; set; }
