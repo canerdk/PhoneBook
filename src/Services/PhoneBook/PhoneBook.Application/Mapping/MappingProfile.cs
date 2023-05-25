@@ -12,6 +12,7 @@ namespace PhoneBook.Application.Mapping
             CreateMap<Person, CreatePersonCommandRequest>().ReverseMap();
             CreateMap<Person, CreatePersonCommandResponse>().ReverseMap();
 
+            CreateMap<Person, DeletePersonCommandResponse>().ReverseMap();
         }
     }
 }
