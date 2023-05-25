@@ -8,16 +8,14 @@ using System.Threading.Tasks;
 
 namespace PhoneBook.Application.Contracts.Persistence
 {
-    public interface IAsyncRepository<T> where T : EntityBase
+    public interface IAsyncRepository<T> where T : EntityBase, new()
     {
-        Task<T> GetAsync(Expression<Func<T, bool>> predicate = null,
+        Task<T> GetAsync(Expression<Func<T, bool>> predicate,
                                         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-                                        string includeString = null,
-                                        bool disableTracking = true);
+                                        string includeString = null);
         Task<IReadOnlyList<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null,
                                        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-                                       List<Expression<Func<T, object>>> includes = null,
-                                       bool disableTracking = true);
+                                       List<Expression<Func<T, object>>> includes = null);
         Task<T> AddAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<T> DeleteAsync(T entity);
