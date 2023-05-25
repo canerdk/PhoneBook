@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\" />
+    <Folder Include="Features\Handlers\QueryHandlers\" />
+    <Folder Include="Features\Queries\Request\" />
+    <Folder Include="Features\Queries\Response\" />
   </ItemGroup>
 
   <ItemGroup>

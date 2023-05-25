@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PhoneBook.Application.Features.Commands.Request.Persons;
+using PhoneBook.Application.Features.Commands.Response.Persons;
+using PhoneBook.Domain.Entities;
 
 namespace PhoneBook.Application.Mapping
 {
@@ -11,7 +9,9 @@ namespace PhoneBook.Application.Mapping
     {
         public MappingProfile()
         {
-            
+            CreateMap<Person, CreatePersonCommandRequest>().ReverseMap();
+            CreateMap<Person, CreatePersonCommandResponse>().ReverseMap();
+
         }
     }
 }
