@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using PhoneBook.Application.Features.Commands.Request.PersonContacts;
 using PhoneBook.Application.Features.Commands.Request.Persons;
+using PhoneBook.Application.Features.Commands.Response.PersonContacts;
 using PhoneBook.Application.Features.Commands.Response.Persons;
 using PhoneBook.Application.Features.Queries.Response.PersonContacts;
 using PhoneBook.Application.Features.Queries.Response.Persons;
@@ -22,8 +24,18 @@ namespace PhoneBook.Application.Mapping
             CreateMap<Person, GetAllPersonQueryResponse>().ReverseMap();
             CreateMap<Person, GetByIdPersonQueryResponse>().ReverseMap();
 
-            CreateMap<Person, GetAllPersonContactQueryResponse>().ReverseMap();
-            CreateMap<Person, GetByIdPersonContactQueryResponse>().ReverseMap();
+
+            CreateMap<PersonContact, CreatePersonContactCommandRequest>().ReverseMap();
+            CreateMap<PersonContact, CreatePersonContactCommandResponse>().ReverseMap();      
+            
+            CreateMap<PersonContact, UpdatePersonContactCommandRequest>().ReverseMap();
+            CreateMap<PersonContact, UpdatePersonContactCommandResponse>().ReverseMap();     
+            
+            CreateMap<PersonContact, DeletePersonContactCommandResponse>().ReverseMap();    
+            
+            CreateMap<PersonContact, GetAllPersonContactQueryResponse>().ReverseMap();
+            CreateMap<PersonContact, GetByIdPersonContactQueryResponse>().ReverseMap();     
+
         }
     }
 }
