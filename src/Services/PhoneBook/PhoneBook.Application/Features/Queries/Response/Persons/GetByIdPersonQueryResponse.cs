@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneBook.Application.Features.Queries.Response.PersonContacts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace PhoneBook.Application.Features.Queries.Response.Persons
         public string FirsName { get; set; }
         public string LastName { get; set; }
         public string Company { get; set; }
+        public virtual ICollection<GetAllPersonContactQueryResponse> PersonContacts { get; set; }
     }
 }
