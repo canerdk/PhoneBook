@@ -24,7 +24,7 @@ services:
   pgadmin:
     container_name: pgadmin
     environment:
-        - PGADMIN_DEFAULT_EMAIL=canerdk1995@hotmail.com
+        - PGADMIN_DEFAULT_EMAIL=admin@hotmail.com
         - PGADMIN_DEFAULT_PASSWORD=admin1234
     restart: always
     ports:
