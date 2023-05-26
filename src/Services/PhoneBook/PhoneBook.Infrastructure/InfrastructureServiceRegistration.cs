@@ -4,11 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using PhoneBook.Application.Contracts.Persistence;
 using PhoneBook.Infrastructure.Persistence;
 using PhoneBook.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhoneBook.Infrastructure
 {
@@ -20,7 +15,8 @@ namespace PhoneBook.Infrastructure
                 options.UseNpgsql(configuration.GetConnectionString("PhoneBookConnectionString")));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
-
+            services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPersonContactRepository, PersonContactRepository>();
 
 
             return services;
