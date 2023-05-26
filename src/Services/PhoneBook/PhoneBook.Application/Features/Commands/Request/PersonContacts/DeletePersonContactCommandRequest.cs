@@ -6,5 +6,10 @@ namespace PhoneBook.Application.Features.Commands.Request.PersonContacts
     public class DeletePersonContactCommandRequest : IRequest<DeletePersonContactCommandResponse>
     {
         public Guid Id { get; set; }
+
+        public DeletePersonContactCommandRequest(Guid id)
+        {
+            Id = id;
+        }
     }
 }
