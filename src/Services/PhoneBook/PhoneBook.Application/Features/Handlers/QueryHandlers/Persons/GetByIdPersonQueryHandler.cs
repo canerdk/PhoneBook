@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using PhoneBook.Application.Contracts.Persistence;
 using PhoneBook.Application.Features.Queries.Request.Persons;
 using PhoneBook.Application.Features.Queries.Response.Persons;
@@ -19,7 +20,7 @@ namespace PhoneBook.Application.Features.Handlers.QueryHandlers.Persons
 
         public async Task<GetByIdPersonQueryResponse> Handle(GetByIdPersonQueryRequest request, CancellationToken cancellationToken)
         {
-            var result = await _personRepository.GetAsync(x => x.Id == request.Id);
+            var result = await _personRepository.GetAsync(x => x.Id == request.Id, include: i => i.Include(x => x.PersonContacts));
             return _mapper.Map<GetByIdPersonQueryResponse>(result);
         }
     }
