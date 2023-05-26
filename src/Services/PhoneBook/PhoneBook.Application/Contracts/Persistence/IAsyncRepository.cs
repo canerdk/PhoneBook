@@ -13,7 +13,7 @@ namespace PhoneBook.Application.Contracts.Persistence
         Task<T> GetAsync(Expression<Func<T, bool>> predicate,
                                         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
                                         string includeString = null);
-        Task<IReadOnlyList<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null,
+        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null,
                                        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
                                        List<Expression<Func<T, object>>> includes = null);
         Task<T> AddAsync(T entity);

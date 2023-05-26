@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PhoneBook.Application.Features.Commands.Request.Persons;
 using PhoneBook.Application.Features.Commands.Response.Persons;
+using PhoneBook.Application.Features.Queries.Response.Persons;
 using PhoneBook.Domain.Entities;
 
 namespace PhoneBook.Application.Mapping
@@ -16,6 +17,9 @@ namespace PhoneBook.Application.Mapping
             CreateMap<Person, UpdatePersonCommandResponse>().ReverseMap();
 
             CreateMap<Person, DeletePersonCommandResponse>().ReverseMap();
+
+            CreateMap<Person, GetAllPersonQueryResponse>().ReverseMap();
+            CreateMap<Person, GetByIdPersonQueryResponse>().ReverseMap();
         }
     }
 }
