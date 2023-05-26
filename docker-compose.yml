@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  reportdb:
+    image: mongo
+
+  phonebookdb:
+    image: postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+
+  phonebook.api:
+    image: ${DOCKER_REGISTRY-}phonebookapi
+    build:
+      context: .
+      dockerfile: src/Services/PhoneBook/PhoneBook.API/Dockerfile
+
+volumes:
+  mongo_data:
+  postgres_data:
+  pgadmin_data:
