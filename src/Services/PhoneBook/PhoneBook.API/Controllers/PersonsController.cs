@@ -70,5 +70,19 @@ namespace PhoneBook.API.Controllers
 
             return NotFound();
         }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var query = new DeletePersonCommandRequest(id);
+            var result = await _mediator.Send(query);
+
+            if (result != null)
+                return Ok(result);
+
+            return NotFound();
+        }
     }
 }
