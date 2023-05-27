@@ -10,6 +10,9 @@ services:
   pgadmin:
     image: dpage/pgadmin4
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
   phonebook.api:
     image: ${DOCKER_REGISTRY-}phonebookapi
     build:

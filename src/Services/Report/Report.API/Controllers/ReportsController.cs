@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EventBus.Messages.Events;
+using MassTransit;
+using Microsoft.AspNetCore.Mvc;
 using Report.API.Entities;
 using Report.API.Repositories.Abstract;
 
@@ -9,10 +11,12 @@ namespace Report.API.Controllers
     public class ReportsController : ControllerBase
     {
         private readonly IPhoneBookReportRepository _repository;
+        private readonly IRequestClient<CreateReportEvent> _client;
 
-        public ReportsController(IPhoneBookReportRepository repository)
+        public ReportsController(IPhoneBookReportRepository repository, IRequestClient<CreateReportEvent> client)
         {
             _repository = repository;
+            _client = client;
         }
 
         [HttpGet]
@@ -29,12 +33,18 @@ namespace Report.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add(PhoneBookReport report)
+        [HttpGet("GetReportByLocation")]
+        public async Task<IActionResult> GetReportByLocation(string location)
         {
-            var result = await _repository.AddAsync(report);
-            return Ok(result);
+            var result = await _repository.AddAsync(new PhoneBookReport("Preparing"));
+            if(result != null)
+            {
+                var response = await _client.GetResponse<ReportResultEvent>(new CreateReportEvent { Location = location, ReportId  = result.Id });
+                return Ok(response.Message);
+            }
+            return BadRequest();
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, PhoneBookReport report)

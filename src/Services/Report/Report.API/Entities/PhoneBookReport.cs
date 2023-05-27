@@ -11,5 +11,10 @@ namespace Report.API.Entities
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public string Status { get; set; }
 
+        public PhoneBookReport(string status)
+        {
+            Status = status;
+        }
+
     }
 }

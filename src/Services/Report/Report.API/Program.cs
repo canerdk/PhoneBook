@@ -1,5 +1,6 @@
 using Report.API.Repositories.Abstract;
 using Report.API.Repositories.Concrete;
+using EventBus.Messages.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPhoneBookReportRepository, PhoneBookReportRepository>();
 builder.Services.AddScoped<IReportDetailRepository, ReportDetailRepository>();
+builder.Services.AddMasstransitWithRabbitMQ(builder.Configuration);
 
 var app = builder.Build();
 
