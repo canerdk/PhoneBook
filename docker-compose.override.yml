@@ -41,3 +41,13 @@ services:
       - phonebookdb
     ports:
       - "5001:80"
+
+  report.api:
+    container_name: report.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://reportdb:27017"
+    depends_on:
+      - reportdb
+    ports:
+      - "5002:80"

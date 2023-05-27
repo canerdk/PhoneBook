@@ -16,6 +16,12 @@ services:
       context: .
       dockerfile: src/Services/PhoneBook/PhoneBook.API/Dockerfile
 
+  report.api:
+    image: ${DOCKER_REGISTRY-}reportapi
+    build:
+      context: .
+      dockerfile: src/Services/Report/Report.API/Dockerfile
+
 volumes:
   mongo_data:
   postgres_data:
