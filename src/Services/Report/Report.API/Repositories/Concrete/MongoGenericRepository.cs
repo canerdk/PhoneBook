@@ -13,7 +13,7 @@ namespace Report.API.Repositories.Concrete
         {
             var client = new MongoClient(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
             var database = client.GetDatabase(configuration.GetValue<string>("DatabaseSettings:DatabaseName"));
-            _collection = database.GetCollection<T>(typeof(T).Name.ToLowerInvariant());
+            _collection = database.GetCollection<T>(typeof(T).Name);
         }
 
         public async Task<T> AddAsync(T entity)
