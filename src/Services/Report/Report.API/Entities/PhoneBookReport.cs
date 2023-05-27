@@ -3,11 +3,8 @@ using MongoDB.Bson;
 
 namespace Report.API.Entities
 {
-    public class PhoneBookReport
+    public class PhoneBookReport : MongoEntity
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
 
         [BsonRepresentation(BsonType.DateTime)]
         [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
