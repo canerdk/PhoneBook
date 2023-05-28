@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  reportdb:
+    image: mongo
+
+  phonebookdb:
+    image: postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  phonebook.api:
+    image: ${DOCKER_REGISTRY-}phonebookapi
+    build:
+      context: .
+      dockerfile: src/Services/PhoneBook/PhoneBook.API/Dockerfile
+
+  report.api:
+    image: ${DOCKER_REGISTRY-}reportapi
+    build:
+      context: .
+      dockerfile: src/Services/Report/Report.API/Dockerfile
+
+volumes:
+  mongo_data:
+  postgres_data:
+  pgadmin_data:
