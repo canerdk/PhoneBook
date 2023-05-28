@@ -1,5 +1,4 @@
-﻿using EventBus.Messages.Extensions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PhoneBook.Application.Contracts.Persistence;
@@ -18,8 +17,6 @@ namespace PhoneBook.Infrastructure
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPersonContactRepository, PersonContactRepository>();
-            services.AddMasstransitWithRabbitMQ(configuration);
-
             return services;
         }
     }
