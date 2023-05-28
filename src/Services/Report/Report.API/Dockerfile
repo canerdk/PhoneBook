@@ -7,6 +7,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/Services/Report/Report.API/Report.API.csproj", "src/Services/Report/Report.API/"]
+COPY ["src/BuildingBlocks/EventBus.Messages/EventBus.Messages.csproj", "src/BuildingBlocks/EventBus.Messages/"]
 RUN dotnet restore "src/Services/Report/Report.API/Report.API.csproj"
 COPY . .
 WORKDIR "/src/src/Services/Report/Report.API"

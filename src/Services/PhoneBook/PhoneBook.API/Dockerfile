@@ -10,6 +10,7 @@ COPY ["src/Services/PhoneBook/PhoneBook.API/PhoneBook.API.csproj", "src/Services
 COPY ["src/Services/PhoneBook/PhoneBook.Application/PhoneBook.Application.csproj", "src/Services/PhoneBook/PhoneBook.Application/"]
 COPY ["src/Services/PhoneBook/PhoneBook.Domain/PhoneBook.Domain.csproj", "src/Services/PhoneBook/PhoneBook.Domain/"]
 COPY ["src/Services/PhoneBook/PhoneBook.Infrastructure/PhoneBook.Infrastructure.csproj", "src/Services/PhoneBook/PhoneBook.Infrastructure/"]
+COPY ["src/BuildingBlocks/EventBus.Messages/EventBus.Messages.csproj", "src/BuildingBlocks/EventBus.Messages/"]
 RUN dotnet restore "src/Services/PhoneBook/PhoneBook.API/PhoneBook.API.csproj"
 COPY . .
 WORKDIR "/src/src/Services/PhoneBook/PhoneBook.API"

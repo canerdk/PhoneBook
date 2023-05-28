@@ -32,13 +32,22 @@ services:
     volumes:
         - pgadmin_data:/root/.pgadmin 
 
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"  
+      - "15672:15672"
+
   phonebook.api:
     container_name: phonebook.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=Server=phonebookdb;Port=5432;Database=PhoneBookDb;User Id=admin;Password=admin1234;"
+      - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - phonebookdb
+      - rabbitmq 
     ports:
       - "5001:80"
 
@@ -47,7 +56,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://reportdb:27017"
+      - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - reportdb
+      - rabbitmq 
     ports:
       - "5002:80"

@@ -1,3 +1,4 @@
+using EventBus.Messages.Extensions;
 using PhoneBook.Application;
 using PhoneBook.Infrastructure;
 
@@ -9,7 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddMasstransitWithRabbitMQ(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 

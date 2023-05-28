@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EventBus.Messages.Events;
+using MassTransit;
+using Microsoft.AspNetCore.Mvc;
 using Report.API.Entities;
 using Report.API.Repositories.Abstract;
 
@@ -9,10 +11,14 @@ namespace Report.API.Controllers
     public class ReportsController : ControllerBase
     {
         private readonly IPhoneBookReportRepository _repository;
+        private readonly IReportDetailRepository _reportDetailRepository;
+        private readonly IRequestClient<CreateReportEvent> _client;
 
-        public ReportsController(IPhoneBookReportRepository repository)
+        public ReportsController(IPhoneBookReportRepository repository, IRequestClient<CreateReportEvent> client, IReportDetailRepository reportDetailRepository)
         {
             _repository = repository;
+            _client = client;
+            _reportDetailRepository = reportDetailRepository;
         }
 
         [HttpGet]
@@ -29,12 +35,34 @@ namespace Report.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add(PhoneBookReport report)
+        [HttpGet("GetReportByLocation")]
+        public async Task<IActionResult> GetReportByLocation(string location)
         {
-            var result = await _repository.AddAsync(report);
-            return Ok(result);
+            //Create new report as preparing
+            var addedResult = await _repository.AddAsync(new PhoneBookReport("Preparing"));
+            if(addedResult != null)
+            {
+                //Send report id and location information to phonebook api
+                var response = await _client.GetResponse<ReportResultEvent>(new { Location = location, ReportId  = addedResult.Id });
+
+                var report = await _repository.GetAsync(x => x.Id == response.Message.ReportId);
+                report.Status = "Prepared";
+                var updatedResult = await _repository.UpdateAsync(report.Id, report);
+                if(updatedResult != null)
+                {
+                    var reportDetail = await _reportDetailRepository.AddAsync(new ReportDetail()
+                    {
+                        Location = response.Message.Location,
+                        PersonCount = response.Message.PersonCount,
+                        PhoneNumberCount = response.Message.PhoneNumberCount,
+                        ReportId = response.Message.ReportId
+                    });
+                    return Ok(reportDetail);
+                }
+            }
+            return BadRequest();
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, PhoneBookReport report)

@@ -1,9 +1,12 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Report.API.Entities
+namespace EventBus.Messages.Events
 {
-    public class ReportDetail : MongoEntity
+    public class ReportResultEvent
     {
         public string Location { get; set; }
         public int PersonCount { get; set; }
