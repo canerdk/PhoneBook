@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.API", "src\Services\
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{EB280A11-69A8-4088-BD85-B5D353226929}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Test", "src\Services\PhoneBook\PhoneBook.Test\PhoneBook.Test.csproj", "{B37AC2BC-E1CF-4A1E-8276-67F7198D40F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{EB280A11-69A8-4088-BD85-B5D353226929}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB280A11-69A8-4088-BD85-B5D353226929}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB280A11-69A8-4088-BD85-B5D353226929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B37AC2BC-E1CF-4A1E-8276-67F7198D40F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B37AC2BC-E1CF-4A1E-8276-67F7198D40F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B37AC2BC-E1CF-4A1E-8276-67F7198D40F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B37AC2BC-E1CF-4A1E-8276-67F7198D40F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{0895C8F2-A4BA-4374-94F7-36638BCBC5E6} = {8FC3BBDD-1ACC-4641-9C40-73C52398A767}
 		{464349C4-A996-43EB-9303-E0FB60673BD9} = {45AC1C04-7082-4BB4-A450-8C5359807BE5}
 		{B93F534B-1A41-440D-8A23-D2587E25B39D} = {43231A6E-BCA9-4A66-A22B-65A101C25BA5}
+		{B37AC2BC-E1CF-4A1E-8276-67F7198D40F3} = {8FC3BBDD-1ACC-4641-9C40-73C52398A767}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3380D46-3C40-4915-8D34-A9C6C2C39BC4}
