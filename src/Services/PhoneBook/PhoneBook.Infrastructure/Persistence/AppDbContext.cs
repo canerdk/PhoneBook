@@ -9,6 +9,11 @@ namespace PhoneBook.Infrastructure.Persistence
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+        }
+
         public DbSet<Person> Persons { get; set; }
         public DbSet<PersonContact> PersonContacts { get; set; }
     }
